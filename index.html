@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title> Gobang AI Version </title>
+        <style type="text/css">
+            body {
+                /*background: #ffe4b5;*/
+                background-image: url("img_source/background.jpg");
+                background-position: center;
+                background-repeat:repeat-x;
+                background-size: cover;
+                font-family: serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            h2 {
+                display: inline;
+            }
+
+            h3 {
+                font-family: "Sofia";
+            }
+
+            #desk {
+                position: relative;
+                float: left;
+                left: 200px;
+                width: 1040px;
+                height: 600px;
+                margin: 40px auto;
+            }
+
+            #panel {
+                float: left;
+                width: 190px;
+            }
+
+            #interface {
+                position: relative;
+                float: left;
+                left: 20px;
+                width: 592;
+                height: 592px;
+            }
+
+            #chessboard, #piece {
+                border: 8px double #8B0000;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background:rgba(255,255,255,0);
+                vertical-align: middle;
+            }
+
+            #recordboard {
+                /* background: #D5B978; */
+                background-image: url("img_source/bulletin_board.jpg");
+                background-position: center;
+                background-size: cover;
+                float: right;
+                width: 120px;
+                height: 592px;
+                overflow: scroll;
+                /*opacity: 0.8;*/
+            }
+
+            .button {
+            	margin: 5px 20px 25px 25px; /* top down left right */
+                width: 140px;
+                height: 58px;
+	            line-height: 58px;
+                font-size: 24px;
+                text-align: center;
+                border: 2px solid #4CAF50;
+                border-radius: 10px;
+                display: block;
+                cursor: pointer;
+                background-color: #F0F8FF;
+                box-shadow: 0 9px #999;
+                outline: none;
+            }
+
+            .button:hover {background-color: #009933}
+
+            .button:active {
+                background-color: #00802B;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+
+            #selectbox {
+                position: relative;
+                left: 30px;
+                width: 140px;
+                font-size: 22px;
+                font-weight: 600;
+                font-family: sans-serif;
+                text-shadow: 0px -1px 4px white, 0px -2px 10px yellow, 0px -10px 20px #ff8000, 0px -18px 40px red;
+                line-height: 34px;
+                display: block;
+            }
+
+            #status {
+                margin: 40px 0px;
+            }
+
+            div.identitystatus {
+                display: inline-block;
+                text-align: center;
+            	margin: 10px 10px;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="desk">
+            <div id="panel">
+                <div id="buttongroup">
+                    <button id="restart" class="button">Restart</button>
+                    <button id="undo" class="button">Undo</button>
+                    <button id="switch" class="button">Switch</button>
+                    <!--
+                    <button id="option" class="button">Option</button>
+                    -->
+                </div>
+                
+                <div id="status">
+                    <div class="identitystatus">
+                        <img id="playerPiece" src="img_source/blackPiece.png">
+                        <span><h2>You</h2></span>
+                    </div>
+                    <div class="identitystatus">
+                        <img id="aiPiece" src="img_source/whitePiece.png">
+                        <span><h2>AI</h2></span>
+                    </div>
+                </div>
+                <div id="selectbox">
+                    <label><input type="radio" name="level" id="easy"><span>Easy</span></label><br/>
+                    <label><input type="radio" name="level" id="medium" checked="checked"><span>Medium</span></label><br/>
+                    <label><input type="radio" name="level" id="hard"><span>Hard</span></label><br/>
+                </div>
+            </div>
+            <div id="interface">
+                <canvas id="chessboard" width="576" height="576">
+                 Your browser doesn't support HTML5 canvas. 
+                </canvas>
+                <canvas id="piece" width="576" height="576">
+                </canvas>
+            </div>
+            <div id="recordboard">
+            </div>
+        </div>
+        <script type="text/javascript" src="def.js"></script>
+        <script type="text/javascript" src="pq.js"></script>
+        <script type="text/javascript" src="ac.js"></script>
+        <script type="text/javascript" src="tp.js"></script>
+        <script type="text/javascript" src="gobangEngine.js"></script>
+        <script type="text/javascript" src="gobang.js"></script>
+        <script>
+            gobang = new Gobang();
+            if (gobang.init()) {
+                console.log('Gobang is initialized successfully!');
+            }
+        </script>
+    </body>
+</html>
